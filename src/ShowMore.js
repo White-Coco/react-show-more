@@ -15,7 +15,8 @@ class ShowMore extends Component {
         lines: PropTypes.number,
         more: PropTypes.node,
         less: PropTypes.node,
-        anchorClass: PropTypes.string
+        anchorClass: PropTypes.string,
+        contentClass: PropTypes.string
     }
 
     state = {
@@ -45,7 +46,8 @@ class ShowMore extends Component {
             more,
             less,
             lines,
-            anchorClass
+            anchorClass,
+            contentClass
         } = this.props;
 
         const {
@@ -58,14 +60,14 @@ class ShowMore extends Component {
                 <Truncate
                     lines={!expanded && lines}
                     ellipsis={(
-                        <span>... <a href='#' className={anchorClass} onClick={this.toggleLines}>{more}</a></span>
+                        <span className={contentClass}>... <a href='#' className={anchorClass} onClick={this.toggleLines}>{more}</a></span>
                     )}
                     onTruncate={this.handleTruncate}
                 >
                     {children}
                 </Truncate>
                 {!truncated && expanded && (
-                    <span> <a href='#' className={anchorClass} onClick={this.toggleLines}>{less}</a></span>
+                    <span className={contentClass}> <a href='#' className={anchorClass} onClick={this.toggleLines}>{less}</a></span>
                 )}
             </div>
         );
